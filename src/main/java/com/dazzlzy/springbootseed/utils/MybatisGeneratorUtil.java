@@ -61,11 +61,11 @@ public class MybatisGeneratorUtil {
 
     public static void main(String[] args) {
         MybatisGeneratorUtil.generator(Lang.list(
-                TableModel.builder().tableName("sys_user").modelName("User").packageName("user").build(),
-                TableModel.builder().tableName("sys_role").modelName("Role").packageName("user").build(),
-                TableModel.builder().tableName("sys_permission").modelName("Permission").packageName("user").build(),
-                TableModel.builder().tableName("sys_user_role").modelName("UserRole").packageName("user").build(),
-                TableModel.builder().tableName("sys_role_permission").modelName("RolePermission").packageName("user").build()
+//                TableModel.builder().tableName("sys_user").modelName("User").packageName("user").build(),
+//                TableModel.builder().tableName("sys_role").modelName("Role").packageName("user").build(),
+//                TableModel.builder().tableName("sys_permission").modelName("Permission").packageName("user").build(),
+//                TableModel.builder().tableName("sys_user_role").modelName("UserRole").packageName("user").build(),
+//                TableModel.builder().tableName("sys_role_permission").modelName("RolePermission").packageName("user").build()
         ));
     }
 
