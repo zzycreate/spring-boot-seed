@@ -33,6 +33,13 @@ spring-boot-seed
 [x] druid(阿里数据源)  
 [x] Log4j2  
 [x] lombok  
+[x] Mapper  
+[x] PageHelper  
+[] shiro  
+[] EhCache  
+[] HttpClient  
+[] redis  
+[] mybatis generator  
 
 #### 开发环境
 
