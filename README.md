@@ -4,6 +4,7 @@
 SpringBoot的种子框架项目，个人学习使用，集成一些常用的框架功能，方便快速开发。
 
 #### 软件架构
+```lua
 spring-boot-seed  
 ├── base -- 项目基础包  
 ├── bean -- 非数据库对模型对象  
@@ -18,6 +19,7 @@ spring-boot-seed
 ├── utils -- 工具包  
 ├── web -- controller层  
 └── SpringBootSeedApplication.java -- spring-boot-seed的启动类  
+```
 
 #### 安装教程
 
