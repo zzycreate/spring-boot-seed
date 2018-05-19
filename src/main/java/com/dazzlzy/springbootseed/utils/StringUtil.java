@@ -110,6 +110,13 @@ public class StringUtil {
         return getString(object, "");
     }
 
+    /**
+     * object转String，提供默认值
+     *
+     * @param object       object
+     * @param defaultValue 默认值
+     * @return String
+     */
     public static String getString(Object object, String defaultValue) {
         if (null == object) {
             return defaultValue;
@@ -131,6 +138,13 @@ public class StringUtil {
         return getInt(object, -1);
     }
 
+    /**
+     * object转int，提供默认值
+     *
+     * @param object       object
+     * @param defaultValue 默认值
+     * @return int
+     */
     public static int getInt(Object object, Integer defaultValue) {
         if (null == object) {
             return defaultValue;
@@ -152,6 +166,13 @@ public class StringUtil {
         return getBoolean(object, false);
     }
 
+    /**
+     * object转boolean，提供默认值
+     *
+     * @param object       object
+     * @param defaultValue 默认值
+     * @return boolean
+     */
     public static boolean getBoolean(Object object, Boolean defaultValue) {
         if (null == object) {
             return defaultValue;

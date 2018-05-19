@@ -3,6 +3,8 @@ package com.dazzlzy.springbootseed.utils;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * IP工具类
+ *
  * @author dazzlzy
  * @date 2018/4/1
  */

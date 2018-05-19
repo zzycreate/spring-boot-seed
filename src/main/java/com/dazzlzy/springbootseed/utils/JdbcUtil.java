@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * jdbc工具类，可直接执行sql
+ *
  * @author dazzlzy
  * @date 2018/4/11
  */
@@ -26,8 +28,8 @@ public class JdbcUtil {
         JdbcUtil.dataSource = dataSource;
     }
 
-    public static JdbcUtil initDataSource(DruidDataSource dataSource){
-        if(jdbcUtil != null){
+    public static JdbcUtil initDataSource(DruidDataSource dataSource) {
+        if (jdbcUtil != null) {
             return jdbcUtil;
         }
         jdbcUtil = new JdbcUtil(dataSource);

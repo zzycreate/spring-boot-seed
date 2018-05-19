@@ -2,6 +2,12 @@ package com.dazzlzy.springbootseed.utils;
 
 import java.util.UUID;
 
+/**
+ * 随机数工具类
+ *
+ * @author dazzlzy
+ * @date 2018/5/19
+ */
 public class RandomUtil {
 
     /**
