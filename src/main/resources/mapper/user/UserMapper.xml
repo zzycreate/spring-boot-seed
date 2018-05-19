@@ -15,4 +15,154 @@
         <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
         <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
     </resultMap>
+
+    <resultMap id="UserMap" type="com.dazzlzy.springbootseed.model.user.User">
+        <id column="u_id" jdbcType="BIGINT" property="id"/>
+        <result column="u_create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="u_modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="u_state_code" jdbcType="INTEGER" property="stateCode"/>
+        <result column="u_user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="u_nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="u_password" jdbcType="VARCHAR" property="password"/>
+        <result column="u_salt" jdbcType="VARCHAR" property="salt"/>
+        <result column="u_email" jdbcType="VARCHAR" property="email"/>
+        <result column="u_phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="u_mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="u_last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+        <collection property="roles" ofType="com.dazzlzy.springbootseed.model.user.Role" resultMap="RoleMap"/>
+        <collection property="permissions" ofType="com.dazzlzy.springbootseed.model.user.Permission"
+                    resultMap="PermissionMap"/>
+    </resultMap>
+    <resultMap id="RoleMap" type="com.dazzlzy.springbootseed.model.user.Role">
+        <id column="r_id" jdbcType="BIGINT" property="id"/>
+        <result column="r_create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="r_modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="r_state_code" jdbcType="INTEGER" property="stateCode"/>
+        <result column="r_role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="r_role_code" jdbcType="VARCHAR" property="roleCode"/>
+        <result column="r_description" jdbcType="VARCHAR" property="description"/>
+        <collection property="permissions" ofType="com.dazzlzy.springbootseed.model.user.Permission"
+                    resultMap="PermissionMap"/>
+    </resultMap>
+    <resultMap id="PermissionMap" type="com.dazzlzy.springbootseed.model.user.Permission">
+        <id column="p_id" jdbcType="BIGINT" property="id"/>
+        <result column="p_create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="p_modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="p_state_code" jdbcType="INTEGER" property="stateCode"/>
+        <result column="p_permission_name" jdbcType="VARCHAR" property="permissionName"/>
+        <result column="p_permission_code" jdbcType="VARCHAR" property="permissionCode"/>
+        <result column="p_description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+    <sql id="user_column_sql">
+        u.id AS u_id,
+        u.create_time AS u_create_time,
+        u.modify_time AS u_modify_time,
+        u.state_code AS u_state_code,
+        u.user_name AS u_user_name,
+        u.nick_name AS u_nick_name,
+        u.password AS u_password,
+        u.salt AS u_salt,
+        u.email AS u_email,
+        u.phone AS u_phone,
+        u.mobile AS u_mobile,
+        u.last_login_time AS u_last_login_time
+    </sql>
+    <sql id="role_column_sql">
+        r.id AS r_id,
+        r.create_time AS r_create_time,
+        r.modify_time AS r_modify_time,
+        r.state_code AS r_state_code,
+        r.role_name AS r_role_name,
+        r.role_code AS r_role_code,
+        r.description AS r_description
+    </sql>
+    <sql id="permission_column_sql">
+        p.id AS p_id,
+        p.create_time AS p_create_time,
+        p.modify_time AS p_modify_time,
+        p.state_code AS p_state_code,
+        p.permission_name AS p_permission_name,
+        p.permission_code AS p_permission_code,
+        p.description AS p_description
+    </sql>
+    <select id="selectUser" resultMap="UserMap">
+        SELECT
+        <include refid="user_column_sql"/>,
+        <include refid="role_column_sql"/>,
+        <include refid="permission_column_sql"/>
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON u.id = ur.user_id
+        LEFT JOIN sys_role r ON ur.role_id = r.id
+        LEFT JOIN sys_role_permission rp ON r.id = rp.role_id
+        LEFT JOIN sys_permission p ON rp.permission_id = p.id
+        <include refid="selectUser_where_sql"/>
+    </select>
+    <select id="selectUserByIdOrName" resultMap="UserMap">
+        SELECT
+        <include refid="user_column_sql"/>,
+        <include refid="role_column_sql"/>,
+        <include refid="permission_column_sql"/>
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON u.id = ur.user_id
+        LEFT JOIN sys_role r ON ur.role_id = r.id
+        LEFT JOIN sys_role_permission rp ON r.id = rp.role_id
+        LEFT JOIN sys_permission p ON rp.permission_id = p.id
+        <include refid="selectUserByIdOrName_where_sql"/>
+    </select>
+    <select id="selectUserByIds" resultMap="UserMap">
+        SELECT
+        <include refid="user_column_sql"/>,
+        <include refid="role_column_sql"/>,
+        <include refid="permission_column_sql"/>
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON u.id = ur.user_id
+        LEFT JOIN sys_role r ON ur.role_id = r.id
+        LEFT JOIN sys_role_permission rp ON r.id = rp.role_id
+        LEFT JOIN sys_permission p ON rp.permission_id = p.id
+        <include refid="selectUserByIds_where_sql"/>
+    </select>
+    <sql id="selectUser_where_sql">
+        <where>
+            <if test="user.id != null">
+                and u.id = #{user.id}
+            </if>
+            <if test="user.userName != null and user.userName != '' ">
+                and u.user_name = #{user.userName}
+            </if>
+            <if test="user.nickName != null and user.nickName != '' ">
+                and u.nick_name = #{user.nickName}
+            </if>
+            <if test="user.email != null and user.email != '' ">
+                and u.email = #{user.email}
+            </if>
+            <if test="user.phone != null and user.phone != '' ">
+                and u.phone = #{user.phone}
+            </if>
+            <if test="user.mobile != null and user.mobile != '' ">
+                and u.mobile = #{user.mobile}
+            </if>
+
+        </where>
+    </sql>
+    <sql id="selectUserByIdOrName_where_sql">
+        <where>
+            <if test="id != null">
+                and u.id = #{id}
+            </if>
+            <if test="name != null and name != '' ">
+                and u.user_name = #{name}
+            </if>
+        </where>
+    </sql>
+    <sql id="selectUserByIds_where_sql">
+        <where>
+            <if test="ids != null and ids.size > 0">
+                u.id IN
+                <foreach collection="ids" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
 </mapper>

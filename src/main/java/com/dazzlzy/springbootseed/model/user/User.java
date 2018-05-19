@@ -3,6 +3,7 @@ package com.dazzlzy.springbootseed.model.user;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -81,5 +82,17 @@ public class User {
      */
     @Column(name = "last_login_time")
     private Date lastLoginTime;
+
+    /**
+     * 角色列表
+     */
+    @Transient
+    private List<Role> roles;
+
+    /**
+     * 权限列表
+     */
+    @Transient
+    private List<Permission> permissions;
 
 }

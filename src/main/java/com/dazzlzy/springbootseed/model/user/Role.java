@@ -3,6 +3,7 @@ package com.dazzlzy.springbootseed.model.user;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -55,5 +56,11 @@ public class Role {
      * 角色描述
      */
     private String description;
+
+    /**
+     * 角色拥有的权限
+     */
+    @Transient
+    private List<Permission> permissions;
 
 }
