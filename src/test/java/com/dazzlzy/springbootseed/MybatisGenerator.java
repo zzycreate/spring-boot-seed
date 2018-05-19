@@ -1,7 +1,8 @@
-package com.dazzlzy.common.utils;
+package com.dazzlzy.springbootseed;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.dazzlzy.common.support.TableModel;
+import com.dazzlzy.common.utils.DruidPasswordUtil;
+import com.dazzlzy.common.utils.PropertiesFileUtil;
 import com.google.common.base.CaseFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -20,12 +21,11 @@ import java.util.List;
  * @date 2018/4/26
  */
 @Slf4j
-public class MybatisGeneratorUtil {
+public class MybatisGenerator {
 
     /**
      * 数据库设置
      */
-    private static final DruidDataSource DATA_SOURCE = new DruidDataSource();
     private static final String JDBC_DIVER_CLASS_NAME;
     private static final String JDBC_URL;
     private static final String JDBC_USERNAME;
@@ -60,8 +60,8 @@ public class MybatisGeneratorUtil {
     }
 
     public static void main(String[] args) {
-        MybatisGeneratorUtil.generator(Lang.list(
-//                TableModel.builder().tableName("sys_user").modelName("User").packageName("user").build(),
+        MybatisGenerator.generator(Lang.list(
+                TableModel.builder().tableName("sys_user").modelName("User").packageName("test").build()
 //                TableModel.builder().tableName("sys_role").modelName("Role").packageName("user").build(),
 //                TableModel.builder().tableName("sys_permission").modelName("Permission").packageName("user").build(),
 //                TableModel.builder().tableName("sys_user_role").modelName("UserRole").packageName("user").build(),
