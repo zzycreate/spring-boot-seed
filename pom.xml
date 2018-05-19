@@ -25,6 +25,7 @@
 
         <starter.mybatis.spring.version>1.3.2</starter.mybatis.spring.version>
         <starter.druid.version>1.1.9</starter.druid.version>
+        <starter.mybatis.mapper.version>1.2.4</starter.mybatis.mapper.version>
 
         <log4j.version>2.10.0</log4j.version>
 
@@ -80,6 +81,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <!-- mapper -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>${starter.mybatis.mapper.version}</version>
         </dependency>
 
         <!-- configuration: 用于自动识别ConfigurationProperties，可以从被@ConfigurationProperties注解的节点轻松的产生自己的配置元数据文件；
