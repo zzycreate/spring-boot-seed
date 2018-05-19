@@ -25,12 +25,12 @@ spring-boot-seed
 
 #### 技术使用
 
-1. SpringBoot
-2. SpringMVC
-3. spring-jdbc
-4. Mybatis
-5. Mysql
-6. lombok
+[x] SpringBoot  
+[x] SpringMVC  
+[x] spring-jdbc  
+[x] Mybatis  
+[x] Mysql  
+[x] lombok  
 
 #### 开发环境
 
