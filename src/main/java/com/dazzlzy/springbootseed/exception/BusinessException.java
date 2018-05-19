@@ -4,6 +4,8 @@ import com.dazzlzy.springbootseed.enums.BaseResultEnum;
 import lombok.*;
 
 /**
+ * 业务异常
+ *
  * @author dazzlzy
  * @date 2018/3/22
  */
