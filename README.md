@@ -30,6 +30,7 @@ spring-boot-seed
 [x] spring-jdbc  
 [x] Mybatis  
 [x] Mysql  
+[x] druid(阿里数据源)  
 [x] lombok  
 
 #### 开发环境
