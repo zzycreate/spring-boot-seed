@@ -41,7 +41,7 @@ spring-boot-seed
 [] EhCache  
 [] HttpClient  
 [] redis  
-[] mybatis generator  
+[x] mybatis generator  
 
 #### 开发环境
 
