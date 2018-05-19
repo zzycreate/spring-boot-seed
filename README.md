@@ -4,7 +4,7 @@
 SpringBoot的种子框架项目，个人学习使用，集成一些常用的框架功能，方便快速开发。
 
 #### 软件架构
-spring-boot-seed
+spring-boot-seed  
 ├── base -- 项目基础包  
 ├── bean -- 非数据库对模型对象  
 ├── configuration -- springboot的配置注入  
@@ -13,7 +13,7 @@ spring-boot-seed
 ├── exception -- 异常  
 ├── model -- 数据库模型对象  
 ├── service -- service的接口定义  
-|   └── impl -- service的实现类  
+|    └── impl -- service的实现类  
 ├── support -- 一些支撑的类或接口  
 ├── utils -- 工具包  
 ├── web -- controller层  
