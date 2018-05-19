@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.configuration;
+package com.dazzlzy.common.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;

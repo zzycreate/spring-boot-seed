@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.enums;
+package com.dazzlzy.common.enums;
 
 /**
  * boolean枚举，YES/NO

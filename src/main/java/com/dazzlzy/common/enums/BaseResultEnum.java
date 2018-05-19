@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.enums;
+package com.dazzlzy.common.enums;
 
 /**
  * BaseResult的code编码枚举

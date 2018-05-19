@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.configuration;
+package com.dazzlzy.common.configuration;
 
 import org.apache.logging.log4j.web.Log4jServletFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

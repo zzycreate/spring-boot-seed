@@ -1,6 +1,6 @@
-package com.dazzlzy.springbootseed.utils;
+package com.dazzlzy.common.utils;
 
-import com.dazzlzy.springbootseed.support.IConvertor;
+import com.dazzlzy.common.support.IConvertor;
 import org.nutz.lang.Lang;
 
 import java.util.*;

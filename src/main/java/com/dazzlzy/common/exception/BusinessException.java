@@ -1,6 +1,6 @@
-package com.dazzlzy.springbootseed.exception;
+package com.dazzlzy.common.exception;
 
-import com.dazzlzy.springbootseed.enums.BaseResultEnum;
+import com.dazzlzy.common.enums.BaseResultEnum;
 import lombok.*;
 
 /**

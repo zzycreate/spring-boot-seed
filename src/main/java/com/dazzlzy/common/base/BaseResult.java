@@ -1,6 +1,6 @@
-package com.dazzlzy.springbootseed.base;
+package com.dazzlzy.common.base;
 
-import com.dazzlzy.springbootseed.enums.BaseResultEnum;
+import com.dazzlzy.common.enums.BaseResultEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

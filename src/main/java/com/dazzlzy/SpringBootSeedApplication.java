@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed;
+package com.dazzlzy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.utils;
+package com.dazzlzy.common.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

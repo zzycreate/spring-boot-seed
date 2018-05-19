@@ -1,7 +1,7 @@
-package com.dazzlzy.springbootseed.utils;
+package com.dazzlzy.common.utils;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.dazzlzy.springbootseed.support.TableModel;
+import com.dazzlzy.common.support.TableModel;
 import com.google.common.base.CaseFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -47,7 +47,7 @@ public class MybatisGeneratorUtil {
     private static final String PACKAGE_SERVICE = PACKAGE_BASE + ".service";
     private static final String PACKAGE_CONTROLLER = PACKAGE_BASE + ".controller";
 
-    private static final String MAPPER_INTERFACE_REFERENCE = "com.dazzlzy.springbootseed.base.BaseMapper";
+    private static final String MAPPER_INTERFACE_REFERENCE = "com.dazzlzy.common.base.BaseMapper";
 
 
     static {

@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.utils;
+package com.dazzlzy.common.utils;
 
 import java.util.Date;
 import java.util.HashMap;

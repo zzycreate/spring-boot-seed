@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.base;
+package com.dazzlzy.common.base;
 
 import org.apache.ibatis.annotations.Mapper;
 import tk.mybatis.mapper.common.ConditionMapper;

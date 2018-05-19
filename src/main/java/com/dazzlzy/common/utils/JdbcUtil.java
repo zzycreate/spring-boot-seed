@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.utils;
+package com.dazzlzy.common.utils;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import lombok.extern.slf4j.Slf4j;

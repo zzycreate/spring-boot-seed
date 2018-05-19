@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.configuration;
+package com.dazzlzy.common.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

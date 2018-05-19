@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.utils;
+package com.dazzlzy.common.utils;
 
 import javax.servlet.http.HttpServletRequest;
 

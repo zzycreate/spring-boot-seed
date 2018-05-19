@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.support;
+package com.dazzlzy.common.support;
 
 import lombok.Builder;
 import lombok.Data;

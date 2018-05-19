@@ -1,8 +1,8 @@
-package com.dazzlzy.springbootseed.base;
+package com.dazzlzy.common.base;
 
 
-import com.dazzlzy.springbootseed.enums.BaseResultEnum;
-import com.dazzlzy.springbootseed.exception.BusinessException;
+import com.dazzlzy.common.enums.BaseResultEnum;
+import com.dazzlzy.common.exception.BusinessException;
 
 /**
  * BaseResult生成器

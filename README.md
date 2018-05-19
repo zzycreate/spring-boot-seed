@@ -4,20 +4,21 @@
 SpringBoot的种子框架项目，个人学习使用，集成一些常用的框架功能，方便快速开发。
 
 #### 软件架构
-```lua
+```
 spring-boot-seed  
-├── base -- 项目基础包  
-├── bean -- 非数据库对模型对象  
-├── configuration -- springboot的配置注入  
-├── dao -- DAO层，主要为使用Mapper的接口  
-├── enums -- 枚举  
-├── exception -- 异常  
-├── model -- 数据库模型对象  
-├── service -- service的接口定义  
-|    └── impl -- service的实现类  
-├── support -- 一些支撑的类或接口  
-├── utils -- 工具包  
-├── web -- controller层  
+├── common -- 通用代码包  
+|    ├── base -- 项目基础包  
+|    ├── configuration -- springboot的配置注入  
+|    ├── enums -- 枚举  
+|    ├── exception -- 异常  
+|    ├── support -- 一些支撑的类或接口  
+|    └── utils -- 工具包  
+├── springbootseed -- 项目业务  
+|    ├── controller -- controller层  
+|    ├── dao -- DAO层，主要为使用Mapper的接口  
+|    ├── model -- 数据库模型对象  
+|    └── service -- service的接口定义  
+|         └── impl -- service的实现类  
 └── SpringBootSeedApplication.java -- spring-boot-seed的启动类  
 ```
 
@@ -32,16 +33,16 @@ spring-boot-seed
 [x] spring-jdbc  
 [x] Mybatis  
 [x] Mysql  
-[x] druid(阿里数据源)  
+[x] druid 
 [x] Log4j2  
 [x] lombok  
 [x] Mapper  
 [x] PageHelper  
+[x] mybatis generator  
 [] shiro  
 [] EhCache  
 [] HttpClient  
 [] redis  
-[x] mybatis generator  
 
 #### 开发环境
 

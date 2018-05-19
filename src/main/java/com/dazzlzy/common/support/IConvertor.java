@@ -1,4 +1,4 @@
-package com.dazzlzy.springbootseed.support;
+package com.dazzlzy.common.support;
 
 /**
  * 转换器接口，可以将Source转换为Target
