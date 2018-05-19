@@ -24,6 +24,9 @@
         <java.version>1.8</java.version>
 
         <starter.mybatis.spring.version>1.3.2</starter.mybatis.spring.version>
+        <starter.druid.version>1.1.9</starter.druid.version>
+
+        <log4j.version>2.10.0</log4j.version>
 
     </properties>
 
@@ -69,6 +72,11 @@
             <version>${starter.mybatis.spring.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${starter.druid.version}</version>
+        </dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
@@ -84,11 +92,18 @@
         <!--
             log4j2： SpringBoot默认使用的是Logback日志框架
             log4j2是一个性能比Logback更高的日志框架，如果要在SpringBoot中使用log4j2，需要将spring-boot-starter-logging排除掉，否则会有冲突
+            log4j-1.2-api: 作为log4j与log4j2的桥梁，让log4j的代码可以兼容到log4j2，避免一些jar包冲突
         -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
