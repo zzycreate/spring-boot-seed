@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    status : 这个用于设置log4j2自身内部的信息输出,可以不设置,当设置成TRACE时,会看到log4j2内部各种详细输出
+    monitorInterval : Log4j能够自动检测修改配置文件和重新配置本身, 设置间隔秒数。此处表示每隔几秒重读一次配置文件.
+    日志级别：TRACE < DEBUG < INFO < WARN < ERROR < FATAL
+    如果设置为WARN，则低于WARN的信息都不会输出
+-->
+<Configuration status="INFO" monitorInterval="30">
+
+    <!-- 参数配置 -->
+    <Properties>
+        <!-- 配置日志文件输出目录 -->
+        <Property name="LOG_HOME">/logs/spring-boot-seed</Property>
+        <!-- 日志输出文件名 -->
+        <property name="FILE_NAME">log</property>
+        <!-- 日志格式化 -->
+        <property name="console_pattern_layout">
+            %highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%5level][%logger{36}]-(%t)} %m%n
+        </property>
+        <property name="pattern_layout">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} [%5level][%logger{36}]-(%t) %m%n
+        </property>
+    </Properties>
+
+    <!-- 日志配置Appender -->
+    <Appenders>
+        <!-- 输出控制台的配置 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- ThresholdFilter：配置的日志过滤
+                如果要输出的日志级别在当前级别及以上，则为match，否则走mismatch
+                ACCEPT： 执行日志输出；DENY： 不执行日志输出，结束过滤；NEUTRAL： 不执行日志输出，执行下一个过滤器 -->
+            <!--<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>-->
+            <!-- 日志输出的格式
+                %d{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间,输出到毫秒的时间
+                %-5p (level) : 输出日志级别，-5表示左对齐并且固定输出5个字符，如果不足在右边补0
+                %c (logger) : logger的名称(%logger)
+                %t (thread) : 输出当前线程名称
+                %m : 日志内容，即 logger.info("message")
+                %n : 换行符
+                %C : Java类名(%F)
+                %L : 行号
+                %M : 方法名
+                %l : 输出语句所在的行数, 包括类名、方法名、文件名、行数
+                hostName : 本地机器名
+                hostAddress : 本地ip地址
+             -->
+            <PatternLayout pattern="${console_pattern_layout}"/>
+        </Console>
+
+        <!-- 文件输出配置，文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，适合临时测试用 -->
+        <!--<File name="log" fileName="log/test.log" append="false">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </File>-->
+
+        <!--
+            循环日志文件配置：日志文件大于阀值的时候，就开始写一个新的日志文件
+            这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档
+
+            fileName    : 指定当前日志文件的位置和文件名称
+            filePattern : 指定当发生Rolling时，文件的转移和重命名规则
+            SizeBasedTriggeringPolicy : 指定当文件体积大于size指定的值时，触发Rolling
+            DefaultRolloverStrategy : 指定最多保存的文件个数
+            TimeBasedTriggeringPolicy : 这个配置需要和filePattern结合使用
+                注意filePattern中配置的文件重命名规则是${FILE_NAME}_%d{yyyy-MM-dd}_%i，最小的时间粒度是dd，即天，
+                TimeBasedTriggeringPolicy指定的size是1，结合起来就是每1天生成一个新文件
+        -->
+        <RollingRandomAccessFile name="ALL"
+                                 fileName="${LOG_HOME}/${FILE_NAME}.log"
+                                 filePattern="${LOG_HOME}/${FILE_NAME}.log.%d{yyyy-MM-dd}_%i">
+            <!--<Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>-->
+            <PatternLayout pattern="${pattern_layout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <!--<SizeBasedTriggeringPolicy size="100MB"/>-->
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+        <!-- 异步日志配置 -->
+        <Async name="AsyncAll">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="ALL"/>
+        </Async>
+
+        <!-- 同步日志配置 -->
+        <AppenderRef name="SyncAll">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="ALL"/>
+        </AppenderRef>
+
+    </Appenders>
+
+    <!-- 日志记录Logger -->
+    <Loggers>
+
+        <Logger name="druid.sql" level="DEBUG" additivity="false">
+            <AppenderRef ref="AsyncAll"/>
+        </Logger>
+        <Logger name="druid.sql.Connection" level="INFO" additivity="false">
+            <AppenderRef ref="AsyncAll"/>
+        </Logger>
+        <Logger name="net.sf.ehcache" level="INFO" additivity="false">
+            <AppenderRef ref="AsyncAll"/>
+        </Logger>
+
+        <!--
+            Logger节点用来单独指定日志的形式，比如要为指定包下的class指定不同的日志级别等。
+                level:日志输出级别，共有8个级别，按照从低到高为：All < Trace < Debug < Info < Warn < Error < Fatal < OFF.
+                name:用来指定该Logger所适用的类或者类所在的包全路径,继承自Root节点.
+        　　　　　   AppenderRef：Logger的子节点，用来指定该日志输出到哪个Appender,如果没有指定，就会默认继承自Root.
+                    如果指定了，那么会在指定的这个Appender和Root的Appender中都会输出，
+                    此时我们可以设置Logger的additivity="false"只在自定义的Appender中进行输出。
+        -->
+        <Root level="INFO">
+            <AppenderRef ref="AsyncAll"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
