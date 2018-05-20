@@ -39,10 +39,10 @@ spring-boot-seed
 [x] Mapper  
 [x] PageHelper  
 [x] mybatis generator  
+[x] redis（Jedis、spring-data-redis）  
 [] shiro  
 [] EhCache  
 [] HttpClient  
-[] redis  
 
 #### 开发环境
 
