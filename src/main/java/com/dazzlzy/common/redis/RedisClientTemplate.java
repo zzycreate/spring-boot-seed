@@ -2,15 +2,13 @@ package com.dazzlzy.common.redis;
 
 import lombok.extern.slf4j.Slf4j;
 import org.nutz.lang.Lang;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
 import javax.annotation.Resource;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * redis操作类
@@ -22,7 +20,7 @@ import java.util.Set;
 @Component
 public class RedisClientTemplate {
 
-    @Resource
+    @Autowired
     private ShardedJedisPool shardedJedisPool;
 
     /**
@@ -59,6 +57,32 @@ public class RedisClientTemplate {
 
         try {
             result = shardedJedis.set(key, value);
+        } catch (Exception e) {
+            log.error("RedisClientTemplate set error !", e);
+        } finally {
+            shardedJedis.close();
+        }
+        return result;
+    }
+
+    /**
+     * 设置单个值
+     *
+     * @param key   key
+     * @param value value
+     * @return result
+     */
+    public String set(String key, String value, int seconds) {
+        String result = null;
+
+        ShardedJedis shardedJedis = getRedisClient();
+        if (shardedJedis == null) {
+            return null;
+        }
+
+        try {
+            result = shardedJedis.set(key, value);
+            shardedJedis.expire(key, seconds);
         } catch (Exception e) {
             log.error("RedisClientTemplate set error !", e);
         } finally {
@@ -141,6 +165,7 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
 
     /**
      * 获取多个值
@@ -263,6 +288,140 @@ public class RedisClientTemplate {
 
         try {
             result = shardedJedis.del(key);
+
+        } catch (Exception e) {
+            log.error("RedisClientTemplate del error !", e);
+        } finally {
+            shardedJedis.close();
+        }
+        return result;
+    }
+
+    // -------------------------------- list 操作 ----------------------------------------
+
+    /**
+     * 获取制定位置列表
+     *
+     * @param key   key
+     * @param start start
+     * @param end   end
+     * @return result
+     */
+    public List<String> getList(String key, long start, long end) {
+        List<String> result = null;
+        try {
+            result = lrange(key, start, end);
+        } catch (Exception e) {
+            log.error("RedisClientTemplate getList error !", e);
+        }
+        return result;
+    }
+
+    /**
+     * 获取全部列表
+     *
+     * @param key key
+     * @return result
+     */
+    public List<String> getList(String key) {
+        List<String> result = null;
+
+        try {
+            result = lrange(key, 0, llen(key));
+        } catch (Exception e) {
+            log.error("RedisClientTemplate getList error !", e);
+        }
+
+        return result;
+    }
+
+
+    /**
+     * 获取list长度
+     *
+     * @param key key
+     * @return length
+     */
+    public Long llen(String key) {
+        Long result = null;
+        ShardedJedis shardedJedis = getRedisClient();
+        if (shardedJedis == null) {
+            return result;
+        }
+        try {
+            result = shardedJedis.llen(key);
+
+        } catch (Exception e) {
+            log.error("RedisClientTemplate llen error !", e);
+        } finally {
+            shardedJedis.close();
+        }
+        return result;
+    }
+
+    /**
+     * 获取列表指定范围内的list结果
+     *
+     * @param key   key
+     * @param start start
+     * @param end   end
+     * @return result
+     */
+    public List<String> lrange(String key, long start, long end) {
+        List<String> result = null;
+        ShardedJedis shardedJedis = getRedisClient();
+        if (shardedJedis == null) {
+            return result;
+        }
+        try {
+            result = shardedJedis.lrange(key, start, end);
+        } catch (Exception e) {
+            log.error("RedisClientTemplate lrange error !", e);
+        } finally {
+            shardedJedis.close();
+        }
+        return result;
+    }
+
+    /**
+     * list右侧插入（队尾）
+     *
+     * @param key    key
+     * @param string value
+     * @return result
+     */
+    public Long rpush(String key, String string) {
+        Long result = null;
+        ShardedJedis shardedJedis = getRedisClient();
+        if (shardedJedis == null) {
+            return result;
+        }
+        try {
+            result = shardedJedis.rpush(key, string);
+
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        } finally {
+            shardedJedis.close();
+        }
+        return result;
+    }
+
+    /**
+     * list左侧插入（队头）
+     *
+     * @param key    key
+     * @param string value
+     * @return result
+     */
+    public Long lpush(String key, String string) {
+        Long result = null;
+        ShardedJedis shardedJedis = getRedisClient();
+        if (shardedJedis == null) {
+            return result;
+        }
+        try {
+            result = shardedJedis.lpush(key, string);
 
         } catch (Exception e) {
             log.error(e.getMessage(), e);

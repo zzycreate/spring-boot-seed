@@ -47,7 +47,6 @@ public class RedisConfiguration {
         RedisProperties.Cluster cluster = properties.getCluster();
         if (cluster != null && cluster.getNodes() != null && cluster.getNodes().size() > 0) {
             List<String> nodes = cluster.getNodes();
-            Integer maxRedirects = cluster.getMaxRedirects();
             for (String node : nodes) {
                 String[] nodeAry = node.split(":");
                 int port = Integer.parseInt(nodeAry[1]);
