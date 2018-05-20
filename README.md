@@ -25,7 +25,7 @@ spring-boot-seed
 #### 技术使用
 
 [x] | 技术名 | 版本  
-: --- :|: --- :|: --- :
+ :---: | :---: | :---:  
 [x] | SpringBoot | 2.0.2.RELEASE  
 [x] | SpringMVC(spring-boot-starter-web) | 2.0.2.RELEASE  
 [x] | JDBC(spring-boot-starter-jdbc) | 2.0.2.RELEASE  
