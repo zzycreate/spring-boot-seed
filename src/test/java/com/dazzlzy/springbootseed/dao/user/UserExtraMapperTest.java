@@ -1,6 +1,6 @@
 package com.dazzlzy.springbootseed.dao.user;
 
-import com.dazzlzy.springbootseed.SpringBootSeedApplicationTests;
+import com.dazzlzy.SpringBootSeedApplicationTests;
 import com.dazzlzy.springbootseed.model.user.User;
 import junit.framework.TestCase;
 import lombok.extern.slf4j.Slf4j;
