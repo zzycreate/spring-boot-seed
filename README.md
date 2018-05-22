@@ -37,7 +37,8 @@ spring-boot-seed
 [x] | Redis(spring-boot-starter-data-redis) | 2.0.2.RELEASE  
 [x] | jedis | 2.9.0   
 [x] | mybatis generator | 1.3.6   
-[x] | lombok | 1.16.20     
+[x] | lombok | 1.16.20    
+[x] | Swagger2(springfox.swagger2) | 2.9.0   
 [] | shiro | -  
 [] | EhCache | -  
 [] | HttpClient | -  
