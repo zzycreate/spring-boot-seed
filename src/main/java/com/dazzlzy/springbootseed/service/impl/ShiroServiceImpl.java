@@ -8,9 +8,8 @@ import com.dazzlzy.springbootseed.service.IUserService;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * Shiro认证Service实现
@@ -21,8 +20,12 @@ import javax.annotation.Resource;
 @Service("shiroServiceImpl")
 public class ShiroServiceImpl implements IShiroService {
 
-    @Resource
-    private IUserService userService;
+    private final IUserService userService;
+
+    @Autowired
+    public ShiroServiceImpl(IUserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public User login(Long userId, String userName, String password) {

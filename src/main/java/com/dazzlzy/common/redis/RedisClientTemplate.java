@@ -19,8 +19,15 @@ import java.util.*;
 @Component
 public class RedisClientTemplate {
 
+    /**
+     * 注入ShardedJedisPool，ShardedJedisPool是线程安全的Redis连接池
+     */
+    private final ShardedJedisPool shardedJedisPool;
+
     @Autowired
-    private ShardedJedisPool shardedJedisPool;
+    public RedisClientTemplate(ShardedJedisPool shardedJedisPool) {
+        this.shardedJedisPool = shardedJedisPool;
+    }
 
     /**
      * 获取redis操作类
@@ -183,7 +190,7 @@ public class RedisClientTemplate {
      * @return 是否存在某值
      */
     public boolean exists(String key) {
-        Boolean result = false;
+        boolean result = false;
         ShardedJedis shardedJedis = getRedisClient();
         if (shardedJedis == null) {
             return false;
@@ -345,7 +352,7 @@ public class RedisClientTemplate {
         Long result = null;
         ShardedJedis shardedJedis = getRedisClient();
         if (shardedJedis == null) {
-            return result;
+            return null;
         }
         try {
             result = shardedJedis.llen(key);
@@ -370,7 +377,7 @@ public class RedisClientTemplate {
         List<String> result = null;
         ShardedJedis shardedJedis = getRedisClient();
         if (shardedJedis == null) {
-            return result;
+            return null;
         }
         try {
             result = shardedJedis.lrange(key, start, end);
@@ -393,7 +400,7 @@ public class RedisClientTemplate {
         Long result = null;
         ShardedJedis shardedJedis = getRedisClient();
         if (shardedJedis == null) {
-            return result;
+            return null;
         }
         try {
             result = shardedJedis.rpush(key, string);
@@ -417,7 +424,7 @@ public class RedisClientTemplate {
         Long result = null;
         ShardedJedis shardedJedis = getRedisClient();
         if (shardedJedis == null) {
-            return result;
+            return null;
         }
         try {
             result = shardedJedis.lpush(key, string);

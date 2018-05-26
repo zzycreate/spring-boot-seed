@@ -1,7 +1,6 @@
 package com.dazzlzy.springbootseed.service;
 
 import com.dazzlzy.springbootseed.model.user.User;
-import org.springframework.stereotype.Service;
 
 /**
  * Shiro认证Service
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
  * @author zhaozhenyao
  * @date 2018/5/8
  */
-@Service
 public interface IShiroService {
 
     /**

@@ -35,6 +35,6 @@ public interface IUserService {
      * @param userIds 用户ID集合
      * @return 用户信息
      */
-    List<User> queryUserById(List<Long> userIds);
+    List<User> queryUserByIds(List<Long> userIds);
 
 }

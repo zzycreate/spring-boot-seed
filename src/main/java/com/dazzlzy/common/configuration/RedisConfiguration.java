@@ -1,6 +1,7 @@
 package com.dazzlzy.common.configuration;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,12 +9,11 @@ import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
 import redis.clients.jedis.ShardedJedisPool;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Redis配置注入
+ * Redis配置注入，使用spring-data-redis自动装配的RedisProperties，设置Jedis的配置
  *
  * @author dazzlzy
  * @date 2018/5/20
@@ -21,8 +21,15 @@ import java.util.List;
 @Configuration
 public class RedisConfiguration {
 
-    @Resource
-    private RedisProperties properties;
+    /**
+     * 注入RedisProperties，使用spring-data-redis的配置对象，yml中的spring.redis配置
+     */
+    private final RedisProperties properties;
+
+    @Autowired
+    public RedisConfiguration(RedisProperties properties) {
+        this.properties = properties;
+    }
 
     @Bean
     public JedisPoolConfig jedisPoolConfig() {

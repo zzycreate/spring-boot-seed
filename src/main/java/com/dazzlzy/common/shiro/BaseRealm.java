@@ -14,7 +14,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.HashSet;
 import java.util.List;
@@ -33,8 +32,10 @@ import java.util.Set;
 @Slf4j
 public class BaseRealm extends AuthorizingRealm {
 
+    /**
+     * 由于在ShiroConfiguration中使用了new BaseRealm()无参构造器，无法注入IShiroService，本处使用成员属性上@Autowired
+     */
     @Autowired
-    @Qualifier("shiroServiceImpl")
     private IShiroService shiroService;
 
     /**
