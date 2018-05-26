@@ -1,11 +1,14 @@
 package com.dazzlzy.common.enums;
 
+import lombok.Getter;
+
 /**
  * BaseResult的code编码枚举
  *
  * @author dazzlzy
  * @date 2018/3/21
  */
+@Getter
 public enum BaseResultEnum {
     /**
      * SUCCESS: 200 成功
@@ -26,11 +29,4 @@ public enum BaseResultEnum {
         this.code = code;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }

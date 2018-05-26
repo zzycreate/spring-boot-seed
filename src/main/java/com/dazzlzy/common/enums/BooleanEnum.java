@@ -1,11 +1,14 @@
 package com.dazzlzy.common.enums;
 
+import lombok.Getter;
+
 /**
  * boolean枚举，YES/NO
  *
  * @author dazzlzy
  * @date 2018/5/7
  */
+@Getter
 public enum BooleanEnum {
 
     /**
@@ -19,10 +22,6 @@ public enum BooleanEnum {
     NO(0);
 
     private int value;
-
-    public int getValue() {
-        return value;
-    }
 
     BooleanEnum(int value) {
         this.value = value;

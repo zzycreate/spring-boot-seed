@@ -4,15 +4,12 @@ import com.dazzlzy.SpringBootSeedApplicationTests;
 import junit.framework.TestCase;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 /**
  * RedisClientTemplate 单元测试
@@ -23,7 +20,10 @@ import static org.junit.Assert.*;
 @Slf4j
 public class RedisClientTemplateTest extends SpringBootSeedApplicationTests {
 
-    @Resource
+    /**
+     * 注入的jedis模板操作对象
+     */
+    @Autowired
     private RedisClientTemplate redisClientTemplate;
 
     @Test

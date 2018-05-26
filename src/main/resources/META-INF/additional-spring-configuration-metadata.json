@@ -1,0 +1,49 @@
+{
+  "properties": [
+    {
+      "name": "project.author.name",
+      "type": "java.lang.String",
+      "description": "Description for project.author.name."
+    },
+    {
+      "name": "project.author.url",
+      "type": "java.lang.String",
+      "description": "Description for project.author.url."
+    },
+    {
+      "name": "project.author.email",
+      "type": "java.lang.String",
+      "description": "Description for project.author.email."
+    },
+    {
+      "name": "project.groupId",
+      "type": "java.lang.String",
+      "description": "Description for project.groupId."
+    },
+    {
+      "name": "project.artifactId",
+      "type": "java.lang.String",
+      "description": "Description for project.artifactId."
+    },
+    {
+      "name": "project.basedir",
+      "type": "java.lang.String",
+      "description": "Description for project.basedir."
+    },
+    {
+      "name": "project.core-package",
+      "type": "java.lang.String",
+      "description": "Description for project.core-package."
+    },
+    {
+      "name": "project.project-package",
+      "type": "java.lang.String",
+      "description": "Description for project.project-package."
+    },
+    {
+      "name": "swagger.enable",
+      "type": "java.lang.String",
+      "description": "Description for swagger.enable."
+    }
+  ]
+}

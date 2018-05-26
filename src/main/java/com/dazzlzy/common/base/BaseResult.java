@@ -2,7 +2,6 @@ package com.dazzlzy.common.base;
 
 import com.dazzlzy.common.enums.BaseResultEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * 响应结果
- * JsonInclude保证序列化json的时候,如果是null的对象,key也会消失
+ * 如果使用注解@JsonInclude(JsonInclude.Include.NON_NULL)： 则会保证序列化json的时候,如果是null的对象,key也会消失
  *
  * @author dazzlzy
  * @date 2018/3/21
@@ -21,7 +20,6 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseResult<T> implements Serializable {
 
     private Integer code;
@@ -38,7 +36,6 @@ public class BaseResult<T> implements Serializable {
      *
      * @return 是否为成功结果
      */
-    @JsonIgnore
     public boolean isSuccess() {
         return BaseResultEnum.SUCCESS.getCode() == this.code;
     }
