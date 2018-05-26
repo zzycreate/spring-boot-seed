@@ -36,7 +36,6 @@ public class BaseResult<T> implements Serializable {
      *
      * @return 是否为成功结果
      */
-    @JsonIgnore
     public boolean isSuccess() {
         return BaseResultEnum.SUCCESS.getCode() == this.code;
     }

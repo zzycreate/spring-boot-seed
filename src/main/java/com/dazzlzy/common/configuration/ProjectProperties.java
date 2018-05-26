@@ -72,6 +72,9 @@ public class ProjectProperties {
      */
     private ProjectAuthorProperties author;
 
+    /**
+     * 注入的spring环境上下文
+     */
     private final Environment environment;
 
     @Autowired
@@ -96,7 +99,7 @@ public class ProjectProperties {
         if (runtimeEnvs.size() == 0) {
             return false;
         }
-        //最后一个运行环境
+        //最后一个运行环境, 如果spring.profiles.active=dev, prod, mysql  则运行环境为dev, prod, 最后一个运行环境为prod，是生产环境
         String env = runtimeEnvs.get(runtimeEnvs.size() - 1);
         return EnvironmentEnum.PROD.getName().equals(env);
     }

@@ -11,6 +11,8 @@ spring-boot-seed
 |    ├── configuration -- springboot的配置注入  
 |    ├── enums -- 枚举  
 |    ├── exception -- 异常  
+|    ├── redis -- redis  
+|    ├── shiro -- shiro  
 |    ├── support -- 一些支撑的类或接口  
 |    └── utils -- 工具包  
 ├── springbootseed -- 项目业务  
@@ -39,7 +41,7 @@ spring-boot-seed
 [x] | mybatis generator | 1.3.6   
 [x] | lombok | 1.16.20    
 [x] | Swagger2(springfox.swagger2) | 2.9.0   
-[] | shiro | -  
+[x] | shiro | 1.3.2  
 [] | EhCache | -  
 [] | HttpClient | -  
 

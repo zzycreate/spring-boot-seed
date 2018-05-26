@@ -90,4 +90,15 @@ public class TestController {
         return BaseResultGenerator.success(msg);
     }
 
+    /**
+     * 检查是否授权
+     *
+     * @return 检查授权
+     */
+    @ApiOperation(value = "检查授权", notes = "检查授权，如果授权成功：返回success，否则跳转/login")
+    @GetMapping(value = "checkAuthc")
+    public BaseResult checkAuthc() {
+        return BaseResultGenerator.success();
+    }
+
 }
