@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 /**

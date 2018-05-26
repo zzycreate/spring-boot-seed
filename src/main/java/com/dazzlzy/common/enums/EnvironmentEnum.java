@@ -1,7 +1,6 @@
 package com.dazzlzy.common.enums;
 
 import lombok.Getter;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * 运行环境枚举

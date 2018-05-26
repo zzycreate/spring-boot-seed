@@ -64,11 +64,11 @@ public class TestController {
     }
 
     /**
-     * 运行环境，运行环境取的是${spring.profiles.active}的值，String
+     * 运行环境，将Environment.activeProfiles注入到projectProfiles中
      *
      * @return 返回当前项目的运行环境
      */
-    @ApiOperation(value = "项目环境值", notes = "获取当前项目运行环境，取${spring.profiles.active}的值，项目初始化时的值")
+    @ApiOperation(value = "项目环境值", notes = "获取当前项目运行环境，取ProjectProperties.env的值，应该和activeProfiles一致")
     @GetMapping(value = "env")
     public BaseResult env() {
         String[] env = projectProperties.getEnv();
