@@ -7,7 +7,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 /**
  * 测试Controller
@@ -24,9 +27,12 @@ public class TestController {
 
     private final ProjectProperties projectProperties;
 
+    private final Environment environment;
+
     @Autowired
-    public TestController(ProjectProperties projectProperties) {
+    public TestController(ProjectProperties projectProperties, Environment environment) {
         this.projectProperties = projectProperties;
+        this.environment = environment;
     }
 
     /**
@@ -35,13 +41,53 @@ public class TestController {
      *
      * @return BaseResult
      */
-    @ApiOperation(value = "测试", notes = "测试接口")
-    @GetMapping(value = "test")
-    public BaseResult test() {
-        log.info("test info ...");
+    @ApiOperation(value = "项目配置", notes = "获取项目配置参数")
+    @GetMapping(value = "projectProperties")
+    public BaseResult projectProperties() {
         log.info("Project Properties: {}", projectProperties);
+        //此处本意是将projectProperties返回至前端，但是projectProperties对象是由spring注入而来，其中包含过多的动态代理数据，
+        //使用lombok的@Data注解处理BaseResult时，数据过大，返回报错，因此只返回success
         return BaseResultGenerator.success();
     }
 
+    /**
+     * 获取项目环境值，获取的是Environment对象中的activeProfiles，String[]
+     *
+     * @return 返回当前项目的环境值
+     */
+    @ApiOperation(value = "项目环境值", notes = "获取当前项目运行时环境值，取Environment对象中的activeProfiles, 项目运行时的值")
+    @GetMapping(value = "activeProfiles")
+    public BaseResult activeProfiles() {
+        String[] activeProfiles = environment.getActiveProfiles();
+        log.info("Active Profiles: {}", Arrays.toString(activeProfiles));
+        return BaseResultGenerator.success(activeProfiles);
+    }
+
+    /**
+     * 运行环境，运行环境取的是${spring.profiles.active}的值，String
+     *
+     * @return 返回当前项目的运行环境
+     */
+    @ApiOperation(value = "项目环境值", notes = "获取当前项目运行环境，取${spring.profiles.active}的值，项目初始化时的值")
+    @GetMapping(value = "env")
+    public BaseResult env() {
+        String[] env = projectProperties.getEnv();
+        log.info("Project env: {}", Arrays.toString(env));
+        return BaseResultGenerator.success(env);
+    }
+
+    /**
+     * 是否是生产环境
+     *
+     * @return 返回当前项目的运行环境
+     */
+    @ApiOperation(value = "是否生产环境", notes = "检查是否是生产环境")
+    @GetMapping(value = "isProduct")
+    public BaseResult isProduct() {
+        boolean isProduct = projectProperties.isProduct();
+        String msg = "Current Environment is" + (isProduct ? "" : " not") + " product";
+        log.info(msg);
+        return BaseResultGenerator.success(msg);
+    }
 
 }

@@ -20,8 +20,10 @@
 
     <properties>
         <project.author.name>dazzlzy</project.author.name>
-        <project.author.url>-</project.author.url>
+        <project.author.url></project.author.url>
         <project.author.email>dazzlzy@gmail.com</project.author.email>
+        <project.package.core>com.dazzlzy.common</project.package.core>
+        <project.package.service>com.dazzlzy.springbootseed</project.package.service>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -147,6 +149,11 @@
             <version>${log4j.version}</version>
         </dependency>
 
+        <!--
+            devtools可以实现页面热部署（即页面修改后会立即生效，这个可以直接在application.properties文件中配置spring.thymeleaf.cache=false来实现），
+            实现类文件热部署（类文件修改后不会立即生效），实现对属性文件的热部署。
+            即devtools会监听classpath下的文件变动，并且会立即重启应用（发生在保存时机），注意：因为其采用的虚拟机机制，该项重启是很快的
+        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -245,6 +252,22 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--fork :  如果没有该项配置，devtools不会起作用，即应用不会restart -->
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>utf-8</encoding>
+                    <!--
+                        由于${}方式会被maven处理。如果你pom继承了spring-boot-starter-parent，Spring
+                        Boot已经将maven-resources-plugins默认的${}方式改为了@@方式，如@name@
+                        useDefaultDelimiter为true则使用默认的${}方式读取maven的设置
+                    -->
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                </configuration>
             </plugin>
         </plugins>
     </build>

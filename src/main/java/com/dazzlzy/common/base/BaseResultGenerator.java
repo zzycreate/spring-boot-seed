@@ -63,7 +63,7 @@ public class BaseResultGenerator {
      * @param message 自定义信息
      * @return 响应结果
      */
-    public static <T> BaseResult<T> success(final String message) {
+    public static <T> BaseResult<T> success4Message(final String message) {
         return new BaseResult<>(BaseResultEnum.SUCCESS.getCode(), true, message, null);
     }
 
