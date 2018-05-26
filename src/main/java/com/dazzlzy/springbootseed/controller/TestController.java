@@ -2,9 +2,11 @@ package com.dazzlzy.springbootseed.controller;
 
 import com.dazzlzy.common.base.BaseResult;
 import com.dazzlzy.common.base.BaseResultGenerator;
+import com.dazzlzy.common.configuration.ProjectProperties;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,6 +22,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "test")
 public class TestController {
 
+    private final ProjectProperties projectProperties;
+
+    @Autowired
+    public TestController(ProjectProperties projectProperties) {
+        this.projectProperties = projectProperties;
+    }
+
     /**
      * 测试
      * 使用@GetMapping相当于使用@RequestMapping(method={RequestMethod.GET})
@@ -30,6 +39,7 @@ public class TestController {
     @GetMapping(value = "test")
     public BaseResult test() {
         log.info("test info ...");
+        log.info("Project Properties: {}", projectProperties);
         return BaseResultGenerator.success();
     }
 

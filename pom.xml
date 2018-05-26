@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>spring-boot-seed</name>
-    <description>Demo project for Spring Boot</description>
+    <description>SpringBootSeed是一个SpringBoot的骨架项目，该项目集成SpringBoot2与众多常用框架，供学习使用</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,6 +19,10 @@
     </parent>
 
     <properties>
+        <project.author.name>dazzlzy</project.author.name>
+        <project.author.url>-</project.author.url>
+        <project.author.email>dazzlzy@gmail.com</project.author.email>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>

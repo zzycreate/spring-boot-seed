@@ -1,5 +1,6 @@
 package com.dazzlzy.common.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +24,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
+    private final ProjectProperties projectProperties;
+
     @Value(value = "${swagger.enable}")
     private boolean swaggerEnable;
+
+    @Autowired
+    public SwaggerConfiguration(ProjectProperties projectProperties) {
+        this.projectProperties = projectProperties;
+    }
 
     @Bean
     public Docket api() {
@@ -40,11 +48,15 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo apiInfo() {
+        Contact contact = new Contact(
+                projectProperties.getAuthor().getName(),
+                projectProperties.getAuthor().getUrl(),
+                projectProperties.getAuthor().getEmail());
         return new ApiInfoBuilder()
-                .title("SpringBootSeed RESTful API 接口文档")
-                .description("SpringBootSeed是一个SpringBoot的骨架项目，该项目集成SpringBoot2与众多常用框架，供学习使用")
-                .version("0.1.0")
-                .contact(new Contact("dazzlzy", "", ""))
+                .title(projectProperties.getName())
+                .description(projectProperties.getDescription())
+                .version(projectProperties.getVersion())
+                .contact(contact)
                 .build();
     }
 
