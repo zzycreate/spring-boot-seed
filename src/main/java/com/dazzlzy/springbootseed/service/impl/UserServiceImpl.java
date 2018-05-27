@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,17 +22,8 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements IUserService {
 
-    private final UserMapper userMapper;
-
-    /**
-     * 由于Mapper的实现类是Mybatis运行时通过Mapper.xml代理出来的类，IDE无法检测到实现类，会有代码提示
-     *
-     * @param userMapper 注入的UserMapper
-     */
     @Autowired
-    public UserServiceImpl(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
+    private UserMapper userMapper;
 
     @Override
     public User queryByIdOrName(Long userId, String userName) {
@@ -50,6 +42,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void addUser(User user) {
+        Date now = new Date(System.currentTimeMillis());
         validateUser(user);
         // 随机盐
         String salt = RandomUtil.getSalt();
@@ -57,6 +50,8 @@ public class UserServiceImpl implements IUserService {
         // 密码密文
         String password = PasswordUtil.encrypt(user.getPassword(), salt);
         user.setPassword(password);
+        user.setCreateTime(now);
+        user.setModifyTime(now);
         userMapper.insert(user);
     }
 
