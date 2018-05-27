@@ -1,6 +1,7 @@
 package com.dazzlzy.springbootseed.service;
 
 import com.dazzlzy.SpringBootSeedApplicationTests;
+import com.dazzlzy.common.enums.BooleanEnum;
 import com.dazzlzy.springbootseed.model.user.User;
 import junit.framework.TestCase;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.junit.Test;
 import org.nutz.lang.Lang;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,4 +48,25 @@ public class IUserServiceTest extends SpringBootSeedApplicationTests {
         log.info("==========================================================================");
         TestCase.assertNotNull(list);
     }
+
+    @Test
+    public void addUser(){
+        Date now = new Date(System.currentTimeMillis());
+        User user = new User();
+        user.setUserName("admin");
+        user.setPassword("123456");
+        user.setNickName("ADMIN");
+        user.setEmail("123@abc.com");
+        user.setCreateTime(now);
+        user.setModifyTime(now);
+        user.setStateCode(BooleanEnum.YES.getValue());
+        user.setMobile("18912345678");
+        userService.addUser(user);
+        User result = userService.queryByIdOrName(null, "admin");
+        log.info("==========================================================================");
+        log.info("查询结果 ==> {}", result);
+        log.info("==========================================================================");
+        TestCase.assertNotNull(user);
+    }
+
 }
