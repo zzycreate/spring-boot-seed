@@ -48,7 +48,7 @@
         <guava.version>23.0</guava.version>
         <nutz.version>1.r.65</nutz.version>
         <log4j.version>2.10.0</log4j.version>
-        <swagger.version>2.9.0</swagger.version>
+        <swagger.version>2.8.0</swagger.version>
 
     </properties>
 
