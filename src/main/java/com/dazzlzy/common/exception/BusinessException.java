@@ -19,7 +19,7 @@ public class BusinessException extends RuntimeException {
     /**
      * 异常代码
      */
-    private int errorCode;
+    private int errorCode = BaseResultEnum.SERVER_ERROR.getCode();
     /**
      * 异常信息
      */

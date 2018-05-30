@@ -6,15 +6,21 @@ import junit.framework.TestCase;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.nutz.lang.Lang;
-
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
+/**
+ * UserMapper的单元测试
+ *
+ * @author dazzlzy
+ * @date 2018/5/27
+ */
 @Slf4j
-public class UserExtraMapperTest extends SpringBootSeedApplicationTests {
+public class UserMapperTest extends SpringBootSeedApplicationTests {
 
-    @Resource
+    @Autowired
     private UserMapper userMapper;
 
     @Test
@@ -46,4 +52,16 @@ public class UserExtraMapperTest extends SpringBootSeedApplicationTests {
         log.info("==========================================================================");
         TestCase.assertNotNull(list);
     }
+
+    @Test
+    public void testExample() {
+        Example example = new Example(User.class);
+        example.createCriteria().andIn("userName", Lang.list("admin", "admin_abc"));
+        List<User> list= userMapper.selectByExample(example);
+        log.info("==========================================================================");
+        log.info("查询结果 ==> {}", list);
+        log.info("==========================================================================");
+        TestCase.assertNotNull(list);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.dazzlzy.springbootseed.service;
 
 import com.dazzlzy.SpringBootSeedApplicationTests;
+import com.dazzlzy.common.enums.BooleanEnum;
 import com.dazzlzy.springbootseed.model.user.User;
 import junit.framework.TestCase;
 import lombok.extern.slf4j.Slf4j;
@@ -46,4 +47,22 @@ public class IUserServiceTest extends SpringBootSeedApplicationTests {
         log.info("==========================================================================");
         TestCase.assertNotNull(list);
     }
+
+    @Test
+    public void addUser(){
+        User user = new User();
+        user.setUserName("admin_abc");
+        user.setPassword("123456");
+        user.setNickName("ADMINABC");
+        user.setEmail("123@abc.com");
+        user.setStateCode(BooleanEnum.YES.getValue());
+        user.setMobile("18912345678");
+        userService.addUser(user);
+        User result = userService.queryByIdOrName(null, "admin_abc");
+        log.info("==========================================================================");
+        log.info("查询结果 ==> {}", result);
+        log.info("==========================================================================");
+        TestCase.assertNotNull(user);
+    }
+
 }

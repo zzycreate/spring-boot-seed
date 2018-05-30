@@ -47,7 +47,7 @@ spring-boot-seed
 [x] | jedis | 2.9.0   
 [x] | mybatis generator | 1.3.6   
 [x] | lombok | 1.16.20    
-[x] | Swagger2(springfox.swagger2) | 2.9.0   
+[x] | Swagger2(springfox.swagger2) | 2.8.0   
 [x] | shiro | 1.3.2  
 [] | EhCache | -  
 [] | HttpClient | -  

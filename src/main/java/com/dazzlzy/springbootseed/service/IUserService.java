@@ -37,4 +37,11 @@ public interface IUserService {
      */
     List<User> queryUserByIds(List<Long> userIds);
 
+    /**
+     * 新增用户
+     *
+     * @param user 用户信息
+     */
+    void addUser(User user);
+
 }
