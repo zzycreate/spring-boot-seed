@@ -12,6 +12,7 @@ spring-boot-seed
 |   |    ├── configuration -- springboot的配置注入  
 |   |    ├── enums -- 枚举  
 |   |    ├── exception -- 异常  
+|   |    ├── filter -- 过滤器  
 |   |    ├── redis -- redis支持  
 |   |    ├── shiro -- shiro支持  
 |   |    ├── support -- 项目支撑对象  
