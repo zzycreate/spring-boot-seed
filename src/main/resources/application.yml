@@ -19,6 +19,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+# aop的proxy-target-class=true的时候，表示使用CGLIB实先AOP的方式，否则是使用java标准实现
+  aop:
+    proxy-target-class: true
 ###############################################################################
 ## 项目参数，从maven中读取
 project:
