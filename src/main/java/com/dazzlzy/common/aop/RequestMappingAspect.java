@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
- * Controller注解的AOP切面类
+ * RequestMapping的AOP切面类
  * AOP概念:
  * 1. 切面（Aspect）：官方的抽象定义为“一个关注点的模块化，这个关注点可能会横切多个对象”，在本例中，“切面”就是类TestAspect所关注的具体行为，例如，AServiceImpl.barA()的调用就是切面TestAspect所关注的行为之一。“切面”在ApplicationContext中<aop:aspect>来配置。
  * 2. 连接点（Joinpoint） ：程序执行过程中的某一行为，程序执行到的某个位置，例如，UserService.get的调用或者UserService.delete抛出异常等行为。
@@ -40,7 +40,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @Aspect
-public class ControllerAspect {
+public class RequestMappingAspect {
 
     /**
      * 使用@Pointcut注解指明切入点
