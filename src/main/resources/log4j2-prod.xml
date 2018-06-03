@@ -106,6 +106,11 @@
             <AppenderRef ref="AsyncAll"/>
         </Logger>
 
+        <!-- 忽略swagger中使用ApiParam时，没有默认值，类型转换的异常 -->
+        <Logger name="io.swagger.models.parameters.AbstractSerializableParameter" level="ERROR" additivity="false" >
+            <AppenderRef ref="AsyncAll"/>
+        </Logger>
+
         <!--
             Logger节点用来单独指定日志的形式，比如要为指定包下的class指定不同的日志级别等。
                 level:日志输出级别，共有8个级别，按照从低到高为：All < Trace < Debug < Info < Warn < Error < Fatal < OFF.
