@@ -5,7 +5,7 @@ import com.dazzlzy.springbootseed.model.user.User;
 /**
  * Shiro认证Service
  *
- * @author zhaozhenyao
+ * @author dazzlzy
  * @date 2018/5/8
  */
 public interface IShiroService {

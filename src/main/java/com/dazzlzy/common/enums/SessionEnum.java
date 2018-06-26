@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * Session枚举
  *
- * @author zhaozhenyao
+ * @author dazzlzy
  * @date 2018/5/10
  */
 @Getter

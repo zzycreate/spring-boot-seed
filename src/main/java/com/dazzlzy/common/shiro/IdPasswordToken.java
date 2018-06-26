@@ -7,7 +7,7 @@ import org.apache.shiro.authc.HostAuthenticationToken;
 import org.apache.shiro.authc.RememberMeAuthenticationToken;
 
 /**
- * @author zhaozhenyao
+ * @author dazzlzy
  * @date 2018/5/10
  */
 @Data
