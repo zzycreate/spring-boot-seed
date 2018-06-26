@@ -50,6 +50,7 @@ spring-boot-seed
 [x] | lombok | 1.16.20    
 [x] | Swagger2(springfox.swagger2) | 2.8.0   
 [x] | shiro | 1.3.2  
+[x] | orika | 1.4.2  
 [] | EhCache | -  
 [] | HttpClient | -  
 

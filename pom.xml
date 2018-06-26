@@ -51,6 +51,7 @@
         <nutz.version>1.r.65</nutz.version>
         <log4j.version>2.10.0</log4j.version>
         <swagger.version>2.8.0</swagger.version>
+        <orika.version>1.4.2</orika.version>
 
     </properties>
 
@@ -268,6 +269,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>${orika.version}</version>
         </dependency>
 
     </dependencies>
