@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 /**
  * Shiro认证Service实现
  *
- * @author dazzlzy
+ * @author zhaozhenyao
  * @date 2018/5/10
  */
 @Service("shiroServiceImpl")

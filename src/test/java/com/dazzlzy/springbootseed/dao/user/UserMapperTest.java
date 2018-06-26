@@ -6,9 +6,9 @@ import junit.framework.TestCase;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.nutz.lang.Lang;
+import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 public class UserMapperTest extends SpringBootSeedApplicationTests {
 
-    @Resource
+    @Autowired
     private UserMapper userMapper;
 
     @Test

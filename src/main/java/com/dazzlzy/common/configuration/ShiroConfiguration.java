@@ -125,7 +125,9 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/test/**", "anon");
         // druid过滤
         filterChainDefinitionMap.put("/druid", "anon");
-        // swagger过滤, swagger-ui.html是swagger-ui的入口，/webjars/**和/swagger-resources/**里面是前端资源文件(js、css)
+        // swagger过滤
+        filterChainDefinitionMap.put("/swagger", "anon");
+        filterChainDefinitionMap.put("/swagger/api/docs", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
         filterChainDefinitionMap.put("/swagger-resources/**", "anon");

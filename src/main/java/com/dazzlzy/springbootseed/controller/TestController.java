@@ -3,15 +3,14 @@ package com.dazzlzy.springbootseed.controller;
 import com.dazzlzy.common.base.BaseResult;
 import com.dazzlzy.common.base.BaseResultGenerator;
 import com.dazzlzy.common.configuration.ProjectProperties;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 测试Controller
@@ -21,7 +20,7 @@ import java.util.Map;
  * @date 2018/5/22
  */
 @Slf4j
-@Api(value = "/test", tags = {"test"}, description = "测试接口，一些测试用例展示")
+@Api(value = "/test", tags = "测试接口模块")
 @RestController
 @RequestMapping(value = "test")
 public class TestController {
@@ -100,89 +99,6 @@ public class TestController {
     @GetMapping(value = "checkAuthc")
     public BaseResult checkAuthc() {
         return BaseResultGenerator.success();
-    }
-
-    /**
-     * 使用@ApiOperation注解描述方法的swagger文档，参数基本同@Api
-     * 1. notes: 单个URL资源的描述，可以使用html标签
-     * 2. response： 返回对象
-     * 3. responseContainer： 返回对象容器，有效值："List", "Set" or "Map"
-     * 4. httpMethod：方法method："GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"
-     * 5. code: http返回码
-     * 6. value、tags、produces、consumes、protocols、authorizations同@Api注解
-     *
-     * @return 响应结果
-     */
-    @ApiOperation(value = "测试GET请求", notes = "简单get请求，无参，纯返回成功结果", httpMethod = "GET", response = BaseResult.class)
-    @RequestMapping(value = "get", method = {RequestMethod.GET})
-    @ResponseBody
-    public BaseResult get() {
-        log.info("test info ...");
-        return BaseResultGenerator.success();
-    }
-
-    /**
-     * 简单参数get请求
-     * 简单参数get请求的路径为：localhost:8080/test/getParam?id=1&name=admin&age=18&price=1.23
-     * 使用@ApiParam注解展示请求参数, 可以什么参数也不带，需要描述的时候使用value，必填校验使用required，name可以不用
-     * 1. name: 参数名
-     * 2. value： 参数描述
-     * 3. required: 是否必须，默认为false
-     * 4. defaultValue: 参数展示的默认值
-     * 5. example: 调试参数输入框中的默认值
-     *
-     * @param id    ID值
-     * @param name  名字
-     * @param age   年龄
-     * @param price 价格
-     * @return 响应结果
-     */
-    @ApiOperation(value = "测试带参GET请求", notes = "简单参数get请求，返回请求参数, @ApiParam注解方式")
-    @RequestMapping(value = "getParam", method = {RequestMethod.GET})
-    @ResponseBody
-    public BaseResult getParam(@ApiParam(name = "id", value = "ID值", required = true, defaultValue = "1", example = "2") @RequestParam Long id,
-                               @ApiParam(name = "name", value = "名字", example = "名字") @RequestParam String name,
-                               @ApiParam(value = "年龄", defaultValue = "18") @RequestParam(required = false) Integer age,
-                               @ApiParam(value = "价格", required = true) @RequestParam Double price) {
-        Map<String, Object> map = new HashMap<>(4);
-        map.put("id", id);
-        map.put("name", name);
-        map.put("age", age);
-        map.put("price", price);
-        return BaseResultGenerator.success(map);
-    }
-
-    /**
-     * 简单参数get请求
-     * 简单参数get请求的路径为：localhost:8080/test/getParam/id=1?name=admin&age=18&price=1.23
-     * 使用@ApiImplicitParam注解展示请求参数,重要参数，name，dataType， paramType
-     * 1. name、 value、 required、 defaultValue、 example参数同@ApiParam
-     * 2. dataType： 数据类型（int， Integer，Long，String等都可以，只做展示不做校验），默认string
-     * 3. paramType： 参数类型 （path：以地址的形式提交数据；query：直接跟参数完成自动映射赋值；body：以流的形式提交，仅支持POST；header：参数在request headers里边提交；form：以form表单的形式提交 仅支持POST）
-     *
-     * @param id    ID值
-     * @param name  名字
-     * @param age   年龄
-     * @param price 价格
-     * @return 响应结果
-     */
-    @ApiOperation(value = "测试组合带参GET请求", notes = "简单参数get请求，返回请求参数， @ApiImplicitParam方式")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "ID值", dataTypeClass = Long.class, paramType = "query", required = true, defaultValue = "1", example = "2"),
-            @ApiImplicitParam(name = "name", value = "名字", dataTypeClass = String.class, paramType = "path", example = "名字"),
-            @ApiImplicitParam(name = "age", value = "年龄", dataTypeClass = Integer.class, defaultValue = "18"),
-            @ApiImplicitParam(name = "price", value = "价格", dataTypeClass = Double.class, required = true)
-    })
-    @RequestMapping(value = "getImplicitParams/{name}", method = {RequestMethod.GET})
-    @ResponseBody
-    public BaseResult getImplicitParams(@RequestParam Long id, @PathVariable("name") String name,
-                                        @RequestParam(required = false) Integer age, @RequestParam Double price) {
-        Map<String, Object> map = new HashMap<>(4);
-        map.put("id", id);
-        map.put("name", name);
-        map.put("price", price);
-        map.put("age", age);
-        return BaseResultGenerator.success(map);
     }
 
 }

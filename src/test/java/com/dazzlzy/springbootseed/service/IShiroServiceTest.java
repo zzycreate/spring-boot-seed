@@ -5,8 +5,9 @@ import com.dazzlzy.springbootseed.model.user.User;
 import junit.framework.TestCase;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
+import static org.junit.Assert.*;
 
 /**
  * IShiroService 单元测试
@@ -17,7 +18,7 @@ import javax.annotation.Resource;
 @Slf4j
 public class IShiroServiceTest extends SpringBootSeedApplicationTests {
 
-    @Resource
+    @Autowired
     private IShiroService shiroService;
 
     @Test
