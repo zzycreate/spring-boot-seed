@@ -19,6 +19,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+# aop的proxy-target-class=true的时候，表示使用CGLIB实先AOP的方式，否则是使用java标准实现
+  aop:
+    proxy-target-class: true
 ###############################################################################
 ## 项目参数，从maven中读取
 project:
@@ -35,19 +38,19 @@ project:
     url: ${project.author.url}
     email: ${project.author.email}
 ###############################################################################
-## mybatis
+## mybatis config
 mybatis:
   type-aliases-package: com.dazzlzy.springbootseed.model
   type-handlers-package: com.dazzlzy.springbootseed.dao
   mapper-locations: classpath*:mapper/**/*.xml
 ###############################################################################
-## mapper
+## mapper config
 mapper:
   mappers: com.dazzlzy.common.base.BaseMapper
   not-empty: false
   identity: Mysql
 ###############################################################################
-## pagehelper
+## pagehelper config
 pagehelper:
 # 1). helper-dialect
 # 分页插件会自动检测当前的数据库链接，自动选择合适的分页方式。 你可以配置helperDialect属性来指定分页插件使用哪种方言。配置时，可以使用下面的缩写值：
@@ -68,4 +71,11 @@ pagehelper:
 # 5). auto-runtime-dialect
 # 默认值为 false。设置为 true 时，允许在运行时根据多数据源自动识别对应方言的分页 （不支持自动选择sqlserver2012，只能使用sqlserver）。
   auto-runtime-dialect: true
+###############################################################################
+## springfox swagger config
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api/doc
 ###############################################################################

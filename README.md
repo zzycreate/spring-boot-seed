@@ -12,6 +12,7 @@ spring-boot-seed
 |   |    ├── configuration -- springboot的配置注入  
 |   |    ├── enums -- 枚举  
 |   |    ├── exception -- 异常  
+|   |    ├── filter -- 过滤器  
 |   |    ├── redis -- redis支持  
 |   |    ├── shiro -- shiro支持  
 |   |    ├── support -- 项目支撑对象  
@@ -49,6 +50,7 @@ spring-boot-seed
 [x] | lombok | 1.16.20    
 [x] | Swagger2(springfox.swagger2) | 2.8.0   
 [x] | shiro | 1.3.2  
+[x] | orika | 1.4.2  
 [] | EhCache | -  
 [] | HttpClient | -  
 

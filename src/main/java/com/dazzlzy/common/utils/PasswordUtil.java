@@ -5,7 +5,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 /**
  * 密码工具类
  *
- * @author zhaozhenyao
+ * @author dazzlzy
  * @date 2018/5/13
  */
 public class PasswordUtil {

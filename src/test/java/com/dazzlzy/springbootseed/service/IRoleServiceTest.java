@@ -5,7 +5,8 @@ import com.dazzlzy.common.enums.BooleanEnum;
 import com.dazzlzy.springbootseed.model.user.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
 
 /**
  * IRoleService的单元测试
@@ -16,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Slf4j
 public class IRoleServiceTest extends SpringBootSeedApplicationTests {
 
-    @Autowired
+    @Resource
     private IRoleService roleService;
 
     @Test
